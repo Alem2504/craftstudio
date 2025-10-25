@@ -1,0 +1,22 @@
+<audio id="player" src="http://localhost:3000/live" controls muted autoplay></audio>
+<script>
+    const player = document.getElementById('player');
+
+    // Pokušaj da automatski uključi zvuk (ovo će često biti blokirano)
+    player.addEventListener('canplay', () => {
+        if (player.muted) {
+            // Pokušaj ukloniti isključenje (unmute)
+            player.muted = false;
+            // Ako ovo ne radi, moraš korisniku prikazati gumb za uključivanje zvuka
+
+            // Važna napomena: Preko 90% preglednika blokira i ovo.
+        }
+    });
+
+    // ... Vaši error/stalled slušači ovdje ...
+
+    player.play().catch(error => {
+        console.log("Automatsko puštanje blokirano. Molimo kliknite 'Play' ili gumb za unmute.");
+        // Ako je blokirano, korisnik mora kliknuti 'Play'
+    });
+</script>
